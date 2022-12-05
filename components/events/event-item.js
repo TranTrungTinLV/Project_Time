@@ -1,5 +1,9 @@
-import Link from 'next/link'
+import Image from 'next/image'
 import classes from './event-item.module.css'
+import Button from './../ui/Button';
+import AddressIcon from './../icons/address-icon';
+import ArrowRightIcon from './../icons/arrow-right-icon';
+import DateIcon from './../icons/date-icon';
 function EventItem(props) {
     const { image, title, id, location, date } = props;
 
@@ -11,7 +15,7 @@ function EventItem(props) {
     const formatedAddress = location.replace(', ', '\n ');
     const exployerLink = `/events/${id}`;
     return <li className={classes.item}>
-        <img src = {`/${image}`} alt={title} className={classes.img}/>
+        <Image src = {`/${image}`} alt={title} className={classes.img} width={600} height={300}/>
         <div className={classes.content}>
             <div className={classes.summary}>
                 <h2>
@@ -19,13 +23,18 @@ function EventItem(props) {
                 </h2>
             </div>
             <div className={classes.date}>
+                <DateIcon/>
                 <time className={classes.time}>{humanReadableDate}</time>
             </div>
             <div className={classes.address}>
+                <AddressIcon/>
                 <address>{formatedAddress}</address>
             </div>
             <div className={classes.actions}>
-                <Link href={exployerLink}>Exployer Event</Link>
+                <Button link={exployerLink}>
+                    <spam>Exployer Event</spam>
+                    <span className={classes.icon}><ArrowRightIcon/></span>
+                </Button>
             </div>
         </div>
     </li>
